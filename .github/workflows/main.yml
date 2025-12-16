@@ -1,5 +1,7 @@
 name: laboratorio 8
-on: push 
+on: 
+  push: 
+    branches: ["main"]
 jobs:
   labo8:
     runs-on: ubuntu-latest
@@ -12,23 +14,24 @@ jobs:
       - name: iniciar sesion en dockerhub
         uses: docker/login-action@v3
         with:
-          username: ${{secrets.
-          password: ${{vars.
+          username: ${{vars.USER_GITHUB}}
+          password: ${{secrets.DOCKERHUB_TOKEN_LABO8}}
       - name: construir imagen
         uses: docker/build-push-action@v6
         with:
+          context: ./app
           push: true
           tags: lg10/as-laboratorio-8-web       
       - name: autentificacion google cloud
         uses: google-github-actions/auth@v3
         with:
           project_id: labo8
-          workload_identity_provider: projects/691003069041/locations/global/workloadIdentityPools/labo8-segundo/subject/SUBJECT_ATTRIBUTE_VALUE
-          service_account:
+          workload_identity_provider: projects/691003069041/locations/global/workloadIdentityPools/labo8-segundo/providers/github-actions-provider
+          service_account: labo8-segundo@admindesis.iam.gserviceaccount.com
       - name: utilizar kubectl
         uses: google-github-actions/get-gke-credentials@v3
         with:
-          cluster_name:
-          location:
+          cluster_name: labo8
+          location: us-central1
       - name: desplegar kubernet
         run: kubectl apply -f \k8s\
