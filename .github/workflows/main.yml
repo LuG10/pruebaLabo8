@@ -21,7 +21,7 @@ jobs:
         with:
           context: ./app
           push: true
-          tags: lg10/as-laboratorio-8-web       
+          tags: lg10/as-laboratorio-8-web:latest       
       - name: autentificacion google cloud
         uses: google-github-actions/auth@v3
         with:
@@ -34,4 +34,5 @@ jobs:
           cluster_name: labo8-cluster
           location: us-central1
       - name: desplegar kubernet
-        run: kubectl apply -f \k8s\
+        run: kubectl apply -f ./k8s/
+
