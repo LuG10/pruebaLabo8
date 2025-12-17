@@ -12,7 +12,7 @@ spec:
       labels: 
         component: web
     spec:
-      container:
+      containers:
         - name: web
           image: lg10/as-laboratorio-8-web:latest   
           ports:
