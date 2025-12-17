@@ -5,20 +5,20 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchlabels:
+    matchLabels:
       component: web
   template:
     metadata:
       labels: 
         component: web
-  spec:
-    container:
-      - name: web
-        image: lg10/as-laboratorio-8-web:latest   
-        ports:
-          - containerPort: 5000
-        env:
-          - name: FLASK_APP
-            value: "app.py"
-          - name: FLASK_RUN_HOST
-            value: "0.0.0.0"
+    spec:
+      container:
+        - name: web
+          image: lg10/as-laboratorio-8-web:latest   
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FLASK_APP
+              value: "app.py"
+            - name: FLASK_RUN_HOST
+              value: "0.0.0.0"
