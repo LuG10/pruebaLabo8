@@ -25,7 +25,7 @@ jobs:
       - name: autentificacion google cloud
         uses: google-github-actions/auth@v3
         with:
-          project_id: labo8.2
+          project_id: admindesis
           workload_identity_provider: projects/691003069041/locations/global/workloadIdentityPools/labo8-2/providers/github-actions-provider
           service_account: labo8-2@admindesis.iam.gserviceaccount.com
       - name: utilizar kubectl
